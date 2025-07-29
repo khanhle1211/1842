@@ -77,7 +77,8 @@ export default {
   } else {
     this.$axios.post('/employees', this.employee)
       .then(() => {
-        alert('✅ Nhân viên đã được thêm mới!');
+        alert(this.$t('addSuccess'));
+
         this.$router.push('/');
       })
       .catch(error => {

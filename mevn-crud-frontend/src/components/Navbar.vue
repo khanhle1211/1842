@@ -1,10 +1,10 @@
 <template>
     <nav>
       <ul>
-        <li><router-link to="/employees">Employee list</router-link></li>
-        <li><router-link to="/add">Add Employee</router-link></li>
-        <li><router-link to="/test">Test Page</router-link></li>
-        <li><router-link to="/about">Introduce</router-link></li>
+        <li><router-link to="/employees">Danh Sách Nhân Viên</router-link></li>
+        <li><router-link to="/add">Thêm Nhân Viên</router-link></li>
+        <li><router-link to="/test">Trang Thử Nghiệm </router-link></li>
+        <li><router-link to="/about">Trang Giới Thiệu </router-link></li>
       </ul>
     </nav>
   </template>
