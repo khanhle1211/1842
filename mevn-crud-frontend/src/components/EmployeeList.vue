@@ -60,7 +60,7 @@ export default {
     deleteEmployee(id) {
       this.$axios.delete(`/employees/${id}`)
         .then(() => {
-          console.log('✅ Nhân viên đã được xoá');
+          alert(this.$t('deleteSuccess')); // Thông báo xoá thành công
           this.fetchEmployees();
         })
         .catch(err => {
