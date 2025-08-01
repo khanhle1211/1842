@@ -25,6 +25,7 @@ const messages = {
     deleteSuccess: 'Nhân viên đã được xoá thành công',
     confirmDelete: 'Bạn có chắc chắn muốn xoá nhân viên này không?',
     updateSuccess: 'Nhân viên đã được cập nhật thành công!',
+    noChange: 'Không có thay đổi để cập nhật',
     addSuccess: 'Nhân viên đã được thêm mới!',
     // Giới thiệu
     aboutTitle: 'Về Chúng Tôi',
@@ -69,6 +70,7 @@ const messages = {
     deleteSuccess: 'Employee has been successfully deleted',
     confirmDelete: 'Are you sure you want to delete this employee?',
     updateSuccess: 'Employee updated successfully!',
+    noChange: 'No changes to update',
     addSuccess: 'Employee added successfully!',
     // About Us
     aboutTitle: 'About Us',
@@ -113,6 +115,7 @@ const messages = {
     deleteSuccess: '社員が正常に削除されました！',
     confirmDelete: 'この社員を削除してもよろしいですか？',
     updateSuccess: '社員が正常に更新されました！',
+    noChange: '更新する変更はありません',
     addSuccess: '社員が正常に追加されました！',
     // 会社概要
     aboutTitle: '私たちについて',

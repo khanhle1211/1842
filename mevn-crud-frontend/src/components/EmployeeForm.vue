@@ -1,4 +1,3 @@
-// ✅ src/components/EmployeeForm.vue - Đã tích hợp i18n và fix điều hướng
 <template>
   <div>
     <h2>{{ isEdit ? $t('editTitle') : $t('addTitle') }}</h2>
@@ -51,6 +50,7 @@ export default {
         language2: '',
         language3: ''
       },
+      originalEmployee: null,
       isEdit: false
     };
   },
@@ -59,34 +59,43 @@ export default {
       this.$axios.get('/employees/' + id)
         .then(response => {
           this.employee = response.data;
+          this.originalEmployee = JSON.parse(JSON.stringify(response.data)); // ✅ lưu bản gốc
         })
         .catch(error => {
           console.error('Lỗi khi lấy thông tin nhân viên:', error);
         });
     },
     submitForm() {
-  if (this.isEdit) {
-    this.$axios.put('/employees/' + this.id, this.employee)
-      .then(() => {
-        alert(this.$t('updateSuccess')); // ✅ dùng i18n key thay vì chuỗi cứng
-        this.$router.push('/');
-      })
-      .catch(error => {
-        console.error('Lỗi khi cập nhật nhân viên:', error);
-      });
-  } else {
-    this.$axios.post('/employees', this.employee)
-      .then(() => {
-        alert(this.$t('addSuccess'));
+      if (this.isEdit) {
+        const current = JSON.stringify(this.employee);
+        const original = JSON.stringify(this.originalEmployee);
 
-        this.$router.push('/');
-      })
-      .catch(error => {
-        console.error('❌ Lỗi khi thêm nhân viên:', error);
-        alert('❌ Thêm nhân viên thất bại!');
-      });
-  }
-}
+        if (current === original) {
+          alert(this.$t('noChange'));
+          this.$router.push('/'); // ✅ thông báo nếu không có thay đổi
+          return;
+        }
+
+        this.$axios.put('/employees/' + this.id, this.employee)
+          .then(() => {
+            alert(this.$t('updateSuccess'));
+            this.$router.push('/');
+          })
+          .catch(error => {
+            console.error(this.$t('errorUpdate'), error);
+          });
+      } else {
+        this.$axios.post('/employees', this.employee)
+          .then(() => {
+            alert(this.$t('addSuccess'));
+            this.$router.push('/');
+          })
+          .catch(error => {
+            console.error(this.$t('errorAdd'), error);
+            alert(this.$t('addFail'));
+          });
+      }
+    }
   },
   mounted() {
     if (this.id) {
